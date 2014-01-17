@@ -1,0 +1,201 @@
+<html>
+<head>
+<title>Bd Social</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+
+    <script type="text/javascript">
+
+    function validateForm()
+    {
+        var x=document.forms["myfrom"]["userName"].value;
+        var atpos=x.indexOf("@");
+        var dotpos=x.lastIndexOf(".");
+        if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+        {
+            alert("Not a valid e-mail address");
+            return false;
+        }
+    }
+
+    function validateForm(form)
+    {
+        if(form.userName.value=="")
+        {  
+            alert("Please Enter your User Name Or e-mail..");
+            form.userName.focus();
+            return false;
+        }
+        //password empty or not
+        if(form.password.value=="")
+        {
+            alert("Password field cannot be empty");
+            form.password.focus();
+            return false;
+        }
+		//password length
+		if(form.password.value.length <5)
+				{
+					alert("Please Enter at list 5 Character Password..");
+					form.password.focus();
+					return false;
+				}
+		//password and Confirm Password check
+        if(form.password.value !=form.rePassword.value)
+                {
+                    alert("Your password not matched");
+                    form.rePassword.focus();
+                    return false;
+                }
+
+        // Gender empty or not
+        var selectGender=document.getElementById('gender').value;
+        if(selectGender=="Select One")
+        {
+            alert("Please Select gender");
+            return false;   
+        }
+        //Division is empty or not
+        var selectDivission=document.getElementById('division').value;
+
+        if(selectDivission=="Select One")
+        {
+            alert("please Select you Division");
+            return false;
+        }
+        //Disrict is empty or not
+        var selectDstric=document.getElementById('district').value;
+
+        if(selectDstric=="Select One")
+        {
+            alert("Please select you Distric");
+            return false;
+        }
+ 
+
+
+    }
+		function populate(d1,d2)
+			{
+				var d1= document.getElementById(d1);
+				var d2=document.getElementById(d2);
+				d2.innerHTML="";
+				
+				if(d1.value=="Dhaka") 
+				{
+					var optionArray=["select one| Select One","dhaka|Dhaka","faridpur|Faridpur","gazipur|Gazipur","gopalganj |Gopalganj","jamalpur|Jamalpur","kishoreganj|Kishoreganj",
+					"madaripur|Madaripur ","manikganj |Manikganj","munshiganj |Munshiganj","mymensingh |Mymensingh","narayanganj |Narayanganj","narsingdi |Narsingdi ","Netrakona |Netrakona","Rajbari|Rajbari","shariatpur |Shariatpur","sherpur |Sherpur ","tangail|Tangail"];	
+				}
+				else if(d1.value=="Chittagong") 
+				{
+					var optionArray=["select one|Select One","bandarban |Bandarban ","brahmanbaria |Brahmanbaria ","chandpur |Chandpur ","comilla|Comilla","chittagong |Chittagong ","cox's Bazar |Cox's Bazar ","Feni|Feni","khagrachhari |Khagrachhari ","lakshmipur |Lakshmipur","noakhali |Noakhali ","rangamati |Rangamati "];
+				}
+				else if(d1.value=="Khulna") 
+				{
+					var optionArray=["select one| Select One","Bagerhat |Bagerhat","Chuadanga |Chuadanga ","Jessore |Jessore ","Jhenaidah |Jhenaidah ","Khulna|Khulna","Kushtia |Kushtia ","Magura |Magura ","Meherpur |Meherpur ","Narail|Narail","Satkhira |Satkhira "];
+				}
+				else if(d1.value=="Rajshahi") 
+				{
+					var optionArray=["select one|Select One","Bogra|Bogra","Joypurhat |Joypurhat ","Naogaon |Naogaon","Natore|Natore","Nawabganj|Nawabganj","Pabna|Pabna","Rajshahi |Rajshahi","Sirajganj |Sirajganj "];
+				}
+				else if(d1.value=="Rangpur") 
+				{
+					var optionArray=["select one|Select one","Dinajpur|Dinajpur ","Gaibandha|Gaibandha ","Kurigram |Kurigram ","Lalmonirhat|Lalmonirhat","Nilphamari |Nilphamari ","Panchagarh |Panchagarh ","Rangpur|Rangpur","Thakurgaon |Thakurgaon "];
+				}
+				else if(d1.value=="Sylhet") 
+				{
+					var optionArray=["select one|Select One","Habiganj |Habiganj ","Moulvibazar |Moulvibazar ","Sunamganj |Sunamganj ","Sylhet|Sylhet"];
+				}
+				
+				for(var option in optionArray)
+				{
+					var pair= optionArray[option].split("|");
+					var newOption =document.createElement("option");
+					newOption.value=pair[0];
+					newOption.innerHTML=pair[1];
+					d2.options.add(newOption);
+				}
+			}
+	
+      </script>
+
+</head>
+
+<body>
+
+    <!--BEGIN #signup-form -->
+    <div id="signup-form">
+        
+			<!--BEGIN #subscribe-inner -->
+			<div id="signup-inner">
+			
+				<div class="clearfix" id="header">
+					<img id="signup-icon" src="./images/signup.png" alt="" />
+					<h2>Field Validation and Drop down value filtering in Javascript</h2>
+				</div>
+				
+				<p></p>
+
+				
+				<form id="send" name="myfrom" action="confrimationPage.php" method="POST" onsubmit="return validateForm(this);" >
+					<p>
+
+						<label for="name">User Name *</label>
+						<input id="name" type="text" name="userName"  />
+					</p>
+					
+					<p>
+						<label for="company">Password</label>
+						<input id="company" type="password" name="password" />
+					</p>
+
+					<p>
+						<label for="company">Confirm Password</label>
+						<input id="company" type="password" name="rePassword" />
+					</p>
+
+
+					<p>
+						<label for="company">Gender</label>
+						<select id="gender" name="gender">
+							<option value="Select One">Select One</option>
+							<option>Male</option>
+							<option>Female</option>
+						</select>
+					</p>
+					
+					<p>
+						<label for="email">Division*</label>
+						<select id="division" name="division" onChange="populate(this.id,'district')">
+							<option value="Select One">Select One</option>
+							<option value="Dhaka">Dhaka</option>
+							<option value="Chittagong">Chittagong</option>
+							<option value="Khulna">Khulna</option>
+							<option value="Rajshahi">Rajshahi</option>
+							<option value="Rangpur">Rangpur</option>
+							<option value="Sylhet">Sylhet</option>
+						</select>
+					</p>
+					
+					<p>
+
+						<label for="phone">District</label>
+						<select id="district" name="district">
+							<option value="Select One">Select One</option>							
+						</select>				
+
+					<p>
+						<button id="submit" type="submit">Submit</button>
+					</p>
+					
+				</form>
+            </div>
+        
+        <!--END #signup-inner -->
+        </div>
+        
+    <!--END #signup-form -->   
+    </div>
+
+</body>
+</html>
